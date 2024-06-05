@@ -64,6 +64,8 @@ Users should be able to:
 
 To see how you can add code snippets, see below:
 
+#### Node
+
 ```node
 $node app.js
 ```
@@ -72,11 +74,7 @@ $node app.js
 $jshint;
 ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+#### Export
 
 ```js
 module.exports = log;
@@ -86,9 +84,13 @@ module.exports = log;
 exports.log = log;
 ```
 
+#### Import
+
 ```js
 require("./logger");
 ```
+
+#### Path
 
 ```js
 const path = require("path");
@@ -96,12 +98,16 @@ const path = require("path");
 var pathObj = path.parse(__filename);
 ```
 
+#### OS
+
 ```js
 const os = require("os");
 
 var totalMemory = os.totalmem();
 var freeMemory = os.freemem();
 ```
+
+#### File system
 
 ```js
 const fs = require("fs");
@@ -132,6 +138,8 @@ fs.readdir("$", function (err, files) {
 //   }
 ```
 
+#### Events
+
 ```js
 logger2.js;
 
@@ -150,7 +158,9 @@ class Logger extends EventEmitter {
 }
 
 module.exports = Logger;
+```
 
+```js
 app4.js;
 
 const EventEmitter = require("events");
@@ -170,6 +180,8 @@ logger.log("message");
 // message
 // Listener called { id: 1, url: 'http://' }
 ```
+
+#### HTTP
 
 ```js
 const http = require("http");

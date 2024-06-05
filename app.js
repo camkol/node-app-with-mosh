@@ -1,5 +1,17 @@
-const fs = require("fs");
+const http = require("http");
 
-files = fs.readdirSync("./");
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.write("Hello World");
+    res.end();
+  }
 
-console.log(files);
+  if (req.url === "/api/courses") {
+    res.write(JSON.stringify([1, 2, 3]));
+    res.end();
+  }
+});
+
+server.listen(2000);
+
+console.log("Listening on port 2000...");

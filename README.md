@@ -60,7 +60,7 @@ Users should be able to:
 - node file.js runs the javascript file
 - jshint is a tool in command line to scan all javascript code for errors
 - the way to export and import modules
-- use of node modules: path, os, fileSystem
+- use of node modules: path, os, fileSystem, event, and http
 
 To see how you can add code snippets, see below:
 
@@ -103,15 +103,101 @@ var totalMemory = os.totalmem();
 var freeMemory = os.freemem();
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+```js
+const fs = require("fs");
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+files = fs.readdirSync("./");
 
-### Continued development
+console.log(files);
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+// Result [
+//     '.git',
+//     'app.js',
+//     'app1.js',
+//     'app2.js',
+//     'info.js',
+//     'logger.js',
+//     'README.md'
+//   ]
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+fs.readdir("$", function (err, files) {
+  if (err) console.log("Error", err);
+  else console.log("Result", files);
+});
+// Error [Error: ENOENT: no such file or directory, scandir 'C:\Users\koliy\OneDrive\Desktop\projects\node-app-with-mosh\$'] {
+//     errno: -4058,
+//     code: 'ENOENT',
+//     syscall: 'scandir',
+//     path: 'C:\\Users\\koliy\\OneDrive\\Desktop\\projects\\node-app-with-mosh\\$'
+//   }
+```
+
+```js
+logger2.js;
+
+const EventEmitter = require("events");
+
+var url = "http://mylogger.io/log";
+
+class Logger extends EventEmitter {
+  log(message) {
+    // Send an HTTP request
+    console.log(message);
+
+    // Raise an event
+    this.emit("messageLogged", { id: 1, url: "http://" });
+  }
+}
+
+module.exports = Logger;
+
+app4.js;
+
+const EventEmitter = require("events");
+
+// emit - Making a noise, produce - signalling
+
+const Logger = require("./logger2");
+const logger = new Logger();
+
+// Register a listener
+logger.on("messageLogged", (arg) /* e, eventArg */ => {
+  console.log("Listener called", arg);
+});
+
+logger.log("message");
+
+// message
+// Listener called { id: 1, url: 'http://' }
+```
+
+```js
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.write("Hello World");
+    res.end();
+  }
+
+  if (req.url === "/api/courses") {
+    res.write(JSON.stringify([1, 2, 3]));
+    res.end();
+  }
+});
+
+server.listen(2000);
+
+console.log("Listening on port 2000...");
+
+// http://localhost:2000/api/courses
+
+// Hello World
+
+// http://localhost:2000/api/courses
+
+// [1,2,3]
+```
 
 ### Useful resources
 

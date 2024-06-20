@@ -66,11 +66,11 @@ To see how you can add code snippets, see below:
 
 #### Node
 
-```node
+```bash
 $node app.js
 ```
 
-```node
+```bash
 $jshint;
 ```
 
@@ -117,7 +117,7 @@ files = fs.readdirSync("./");
 console.log(files);
 ```
 
-```node
+```bash
 Result[
   (".git", "app.js", "app1.js", "app2.js", "info.js", "logger.js", "README.md")
 ];
@@ -130,7 +130,7 @@ fs.readdir("$", function (err, files) {
 });
 ```
 
-```node
+```bash
 Error [Error: ENOENT: no such file or directory, scandir 'C:\Users\koliy\OneDrive\Desktop\projects\node-app-with-mosh\$'] {
     errno: -4058,
     code: 'ENOENT',
